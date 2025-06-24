@@ -60,32 +60,38 @@ struct LoginView: View {
     }
     
     private var headerSection: some View {
-        VStack(spacing: 16) {
-            ZStack {
-                Circle()
-                    .fill(BrandColors.smartBlue.opacity(0.1))
-                    .frame(width: 100, height: 100)
-                    .blur(radius: 8)
-                
-                Image(systemName: "bolt.circle.fill")
-                    .font(.system(size: 50, weight: .medium))
-                    .foregroundStyle(
-                        LinearGradient(
-                            colors: [BrandColors.smartBlue, BrandColors.techGreen],
-                            startPoint: .topLeading,
-                            endPoint: .bottomTrailing
-                        )
-                    )
-            }
+        VStack(spacing: 20) {
+            Image("PolitectoLogo")
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .frame(width: 280, height: 190)
+                .shadow(color: BrandColors.smartBlue.opacity(0.2), radius: 8, x: 0, y: 4)
             
             VStack(spacing: 8) {
-                Text("SmartBolt")
-                    .font(.system(size: 32, weight: .bold, design: .rounded))
-                    .foregroundStyle(BrandColors.Text.primary)
+                HStack(spacing: 12) {
+                    Image(systemName: "bolt.circle.fill")
+                        .font(.title2)
+                        .foregroundStyle(
+                            LinearGradient(
+                                colors: [BrandColors.smartBlue, BrandColors.techGreen],
+                                startPoint: .topLeading,
+                                endPoint: .bottomTrailing
+                            )
+                        )
+                    
+                    Text("SmartBolt")
+                        .font(.system(size: 32, weight: .bold, design: .rounded))
+                        .foregroundStyle(BrandColors.Text.primary)
+                }
                 
-                Text("Secure IoT Management")
-                    .font(.title3)
+                Text("Politecnico di Torino")
+                    .font(.subheadline)
+                    .fontWeight(.medium)
                     .foregroundStyle(BrandColors.Text.secondary)
+                
+                Text("Secure IoT Management Platform")
+                    .font(.caption)
+                    .foregroundStyle(BrandColors.Text.tertiary)
             }
         }
     }

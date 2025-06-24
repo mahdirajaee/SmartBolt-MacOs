@@ -37,62 +37,63 @@ struct SplashView: View {
     }
     
     private var logoSection: some View {
-        ZStack {
-            Circle()
-                .fill(
-                    RadialGradient(
-                        colors: [
-                            BrandColors.smartBlue.opacity(glowIntensity * 0.3),
-                            BrandColors.techGreen.opacity(glowIntensity * 0.2),
-                            Color.clear
-                        ],
-                        center: .center,
-                        startRadius: 20,
-                        endRadius: 80
+        VStack(spacing: 24) {
+            ZStack {
+                Circle()
+                    .fill(
+                        RadialGradient(
+                            colors: [
+                                BrandColors.smartBlue.opacity(glowIntensity * 0.3),
+                                BrandColors.techGreen.opacity(glowIntensity * 0.2),
+                                Color.clear
+                            ],
+                            center: .center,
+                            startRadius: 20,
+                            endRadius: 80
+                        )
                     )
-                )
-                .frame(width: 160, height: 160)
-                .blur(radius: 15)
-                .animation(
-                    Animation.easeInOut(duration: 2)
-                        .repeatForever(autoreverses: true),
-                    value: glowIntensity
-                )
-            
-            Circle()
-                .stroke(
-                    LinearGradient(
-                        colors: [
-                            BrandColors.smartBlue.opacity(0.3),
-                            BrandColors.techGreen.opacity(0.3)
-                        ],
-                        startPoint: .topLeading,
-                        endPoint: .bottomTrailing
-                    ),
-                    lineWidth: 2
-                )
-                .frame(width: 120, height: 120)
-                .rotationEffect(.degrees(logoRotation))
-            
-            Image(systemName: "bolt.circle.fill")
-                .font(.system(size: 60, weight: .medium))
-                .foregroundStyle(
-                    LinearGradient(
-                        colors: [BrandColors.smartBlue, BrandColors.techGreen],
-                        startPoint: .topLeading,
-                        endPoint: .bottomTrailing
+                    .frame(width: 420, height: 420)
+                    .blur(radius: 15)
+                    .animation(
+                        Animation.easeInOut(duration: 2)
+                            .repeatForever(autoreverses: true),
+                        value: glowIntensity
                     )
-                )
-                .scaleEffect(logoScale)
-                .opacity(logoOpacity)
-                .shadow(color: BrandColors.smartBlue.opacity(0.3), radius: 10, x: 0, y: 5)
+                
+                Image("PolitectoLogo")
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 400, height: 280)
+                    .scaleEffect(logoScale)
+                    .opacity(logoOpacity)
+                    .shadow(color: BrandColors.smartBlue.opacity(0.3), radius: 10, x: 0, y: 5)
+            }
+            
+            HStack(spacing: 12) {
+                Image(systemName: "bolt.circle.fill")
+                    .font(.title2)
+                    .foregroundStyle(
+                        LinearGradient(
+                            colors: [BrandColors.smartBlue, BrandColors.techGreen],
+                            startPoint: .topLeading,
+                            endPoint: .bottomTrailing
+                        )
+                    )
+                    .rotationEffect(.degrees(logoRotation))
+                
+                Text("x SmartBolt")
+                    .font(.title2)
+                    .fontWeight(.medium)
+                    .foregroundStyle(BrandColors.Text.secondary)
+                    .opacity(logoOpacity)
+            }
         }
     }
     
     private var brandingSection: some View {
         VStack(spacing: 12) {
-            Text("SmartBolt")
-                .font(.system(size: 42, weight: .bold, design: .rounded))
+            Text("SmartBolt IoT Platform")
+                .font(.system(size: 38, weight: .bold, design: .rounded))
                 .foregroundStyle(
                     LinearGradient(
                         colors: [BrandColors.Text.primary, BrandColors.Text.primary.opacity(0.8)],
@@ -103,12 +104,20 @@ struct SplashView: View {
                 .offset(titleOffset)
                 .opacity(titleOpacity)
             
-            Text("Next-Generation IoT Management")
-                .font(.title3)
-                .fontWeight(.medium)
-                .foregroundStyle(BrandColors.Text.secondary)
-                .offset(subtitleOffset)
-                .opacity(subtitleOpacity)
+            VStack(spacing: 6) {
+                Text("Powered by Politecnico di Torino")
+                    .font(.title3)
+                    .fontWeight(.medium)
+                    .foregroundStyle(BrandColors.Text.secondary)
+                    .offset(subtitleOffset)
+                    .opacity(subtitleOpacity)
+                
+                Text("Advanced Gas Pipeline Monitoring")
+                    .font(.subheadline)
+                    .foregroundStyle(BrandColors.Text.tertiary)
+                    .offset(subtitleOffset)
+                    .opacity(subtitleOpacity)
+            }
         }
     }
     
